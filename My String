@@ -1,0 +1,58 @@
+#include<iostream>
+using namespace std;
+class Mystring
+{
+	private:
+		char *p;
+		int size;
+	public:
+		Mystring(int x):size(x),p(new char[x])
+	{
+		cout<<"\nConstructor Called"<<endl;
+	}
+	void Accept(int z, char y)
+	{
+		p[z]=y;
+	}
+
+	Mystring(const Mystring &a)
+	{
+		size=a.size;
+		p=new char[size];
+		for(int i=0;i<size;i++)
+		{
+			p[i]=a.p[i];
+			cout<<"\n"<<p[i];
+		}
+	}
+
+	~Mystring()
+	{
+		delete[]p;
+		cout<<"\nDestructor Called"<<endl;
+	}
+
+};
+
+int main()
+{
+	int n;
+	cout<<"\nEnter size: "<<endl;
+	cin>>n;
+	Mystring a(n);
+	char s;
+	for(int i=0;i<n;i++)
+	{
+
+        	cout<<"\nEnter string: "<<endl;
+		cin>>s;
+		a.Accept(i,s);
+
+	}
+	cout<<"\nCopied string is: "<<endl;
+	Mystring b=a;
+
+
+
+	return 0;
+}
